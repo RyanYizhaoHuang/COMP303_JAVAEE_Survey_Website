@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kb-project>
+ <depends-on-projects/>
+ <used-by-projects/>
+ <paths/>
+ <validation>
+  <core validator-id="jsf-verification"/>
+  <core validator-id="jboss.cdi.core"/>
+  <core validator-id="batch-verification"/>
+  <el>
+   <linked-el length="50" name="%0" offset="1526" path="%1"/>
+   <linked-el length="50" name="%2" offset="1526" path="%1"/>
+   <linked-el length="50" name="%3" offset="1526" path="%1"/>
+  </el>
+ </validation>
+ <aliases>
+  <alias path="pageContext" value="%0"/>
+  <alias path="/SurveysWeb/WebContent/index.jsp" value="%1"/>
+  <alias path="pageContext.request" value="%2"/>
+  <alias path="pageContext.request.contextPath" value="%3"/>
+ </aliases>
+ <includes/>
+ <uris/>
+</kb-project>
