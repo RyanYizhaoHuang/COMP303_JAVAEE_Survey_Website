@@ -1,0 +1,55 @@
+package model;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the questions database table.
+ * 
+ */
+@Entity
+@Table(name="questions")
+@NamedQuery(name="Question.findAll", query="SELECT q FROM Question q")
+public class Question implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int questionid;
+
+	private String question;
+
+	//bi-directional many-to-one association to Survey
+	@ManyToOne
+	@JoinColumn(name="surveyid")
+	private Survey survey;
+
+	public Question() {
+	}
+
+	public int getQuestionid() {
+		return this.questionid;
+	}
+
+	public void setQuestionid(int questionid) {
+		this.questionid = questionid;
+	}
+
+	public String getQuestion() {
+		return this.question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public Survey getSurvey() {
+		return this.survey;
+	}
+
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
+	}
+
+}

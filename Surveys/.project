@@ -5,6 +5,7 @@
 	<projects>
 		<project>SurveysEJB</project>
 		<project>SurveysWeb</project>
+		<project>SurveysJPA</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
+<%@ page import="service.SurveysDAO,model.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,25 +13,28 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Student Management</title>
+<title>Let's Survey</title>
 </head>
 <body>
-
+<%
+		List<Survey> surveys;
+		surveys = (List<Survey>)request.getAttribute("SURVEYS");
+%>
 <div class="container">
 	<div class="page-header">
-  		<h1>Student Management <small> By: Ryan Huang</small></h1>
+  		<h1>Let's Survey <small> By: Ryan Huang</small></h1>
 	</div>
 	<div class="row">
 		<div class="col-md-9">
-			<a class="btn btn-success btn-lg" href="InsertServlet" role="button">Add New Student</a>
+			<a class="btn btn-success btn-lg" href="CreateSurvey" role="button">Add New Survey</a>
 		</div>
 	</div>
 	<div class="row" style="margin-top: 16px">
 		<div class="col-md-9">
-		<form action="${pageContext.request.contextPath}/SearchServlet">
+		<form action="${pageContext.request.contextPath}/ListSurvey">
 			<div class="input-group input-group-lg">
-			  	<span class="input-group-addon " id="sizing-addon1">Student Id:</span>		  	
-			  	<input type="text" class="form-control" name="id" value="">		  	
+			  	<span class="input-group-addon " id="sizing-addon1">Survey Name:</span>		  	
+			  	<input type="text" class="form-control" name="surveyName" value="">		  	
 			  	<span class="input-group-btn btn-group">
 	        	<button class="btn btn-info dropdown-toggle" type="Submit" id="dropdownMenuLink" 
 	        		data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search
@@ -40,9 +44,37 @@
 		</form>
 		</div>
 		<div class="col-md-3">
-			<a  class="btn btn-lg btn-primary" href="SearchServlet?op=all">Show ALL Student <span class="badge"><%=request.getAttribute("numberOfStudent") %></span></a>
+			<a  class="btn btn-lg btn-primary" href="ListSurvey">Show ALL Survey <span class="badge"><%=request.getAttribute("numberOfSurveys") %></span></a>
 		</div>
 	</div>
+	
+	<!-- Display FAQ -->
+	<% if (surveys != null) { %>
+		<% if(surveys.isEmpty())  { %>
+			<div class="row" style="margin-top: 38px">
+			<h3>No surveys found.  </h3>
+			</div>
+		<% } else { %>
+		<div class="row" style="margin-top: 38px">		
+			<div class="col-md-12">
+				<h3>Surveys found <% if (request.getAttribute("surveyName") != null) { %> for : <%= request.getAttribute("surveyName")%><%} %><small> <%= request.getAttribute("numberOfSurveys")%></small></h3>
+				<table class="table table-hover">
+				<TR>
+					<TH>Survey Topic</TH>
+					<th></th>
+					<th></th>
+				</TR>
+				<% for (Survey s : surveys) { %>
+				<TR>
+				<TD><%= s.getSurveyTopic()%></TD>
+				<td><a class="btn btn-sm btn-primary" href="RespondSurvey?id=<%= s.getSurveyid()%>"> Respond</a></td>
+				</TR>
+				<% } %>
+				</table>
+			</div>
+		</div>
+		<% } %>
+	<% } %>
 </div>
 </body>
 </html>

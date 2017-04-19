@@ -1,0 +1,62 @@
+CREATE DATABASE SURVEYSDB;
+
+use SURVEYSDB;
+DROP TABLE IF EXISTS SURVEYS;
+
+CREATE TABLE SURVEYS
+(
+	surveyid INT NOT NULL AUTO_INCREMENT,
+	survey_topic VARCHAR(50),
+	PRIMARY KEY (surveyid)
+)ENGINE=INNODB;
+
+INSERT INTO SURVEYS (survey_topic)
+VALUES ('How about the weather');
+INSERT INTO SURVEYS (survey_topic)
+VALUES ('How about the text-book');
+
+DROP TABLE IF EXISTS QUESTIONS;
+CREATE TABLE QUESTIONS
+(
+	questionid INT NOT NULL AUTO_INCREMENT,
+	question VARCHAR(50),
+	surveyid INT NOT NULL,
+	PRIMARY KEY (questionid),
+	CONSTRAINT survey_fk FOREIGN KEY (surveyid) 
+		REFERENCES SURVEYS(surveyid)
+		ON DELETE CASCADE
+)ENGINE=INNODB;
+
+INSERT INTO QUESTIONS (question,surveyid)
+VALUES ('yestoday',1);
+INSERT INTO QUESTIONS (question,surveyid)
+VALUES ('today',1);
+INSERT INTO QUESTIONS (question,surveyid)
+VALUES ('tomorrow',1);
+INSERT INTO QUESTIONS (question,surveyid)
+VALUES ('COMP313',2);
+INSERT INTO QUESTIONS (question,surveyid)
+VALUES ('COMP239',2);
+INSERT INTO QUESTIONS (question,surveyid)
+VALUES ('COMP381',2);
+
+DROP TABLE IF EXISTS ANSWER;
+CREATE TABLE ANSWER
+(
+	answerid INT NOT NULL AUTO_INCREMENT,
+	surveyid INT NOT NULL,
+	questionid INT NOT NULL,
+	answer INT,
+	PRIMARY KEY (answerid)
+)ENGINE=INNODB;
+
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (1,1,1);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (1,2,1);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (1,3,2);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (2,1,1);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (2,2,1);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (2,3,3);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (1,2,1);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (1,1,2);
+INSERT INTO ANSWER (surveyid,questionid,answer) VALUES (1,3,1);
+
