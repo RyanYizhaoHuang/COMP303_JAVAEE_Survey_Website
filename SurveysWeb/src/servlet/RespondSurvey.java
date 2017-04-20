@@ -1,11 +1,19 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Answer;
+import model.Question;
+import model.Survey;
+import service.SurveysDAO;
 
 /**
  * Servlet implementation class RespondSurvey
@@ -13,7 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/RespondSurvey")
 public class RespondSurvey extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	//SurveysDAO
+	SurveysDAO surveyDao = new SurveysDAO();
+	List<Question> questions = null;
+	Survey survey = null;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -26,16 +39,46 @@ public class RespondSurvey extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+			
+		int surveyid = Integer.parseInt(request.getParameter("id"));
+		questions = surveyDao.findAllQuestionsBySruveyId(surveyid);
+		survey = surveyDao.findSurveyById(surveyid);
+		if(!questions.isEmpty())
+		{
+			request.setAttribute("Questions", questions);
+			
+		}
+		if(survey != null)
+		{
+			request.setAttribute("Survey", survey);
+		}
+		
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/respondSurvey.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+
+		int surveyId = Integer.parseInt(request.getParameter("surveyId"));
+		int numberOfQuestion = Integer.parseInt(request.getParameter("numberOfQuestions"));
+		
+		for (int count = 0; count < numberOfQuestion ; ++ count)
+		{
+			int questionId = Integer.parseInt(request.getParameter("questionid" + String.valueOf(count)));
+			int respond = Integer.parseInt(request.getParameter("optionsRadios" + String.valueOf(count)));
+			Answer answer = new Answer();
+			answer.setSurveyid(surveyId);
+			answer.setQuestionid(questionId);
+			answer.setAnswer(respond);
+			surveyDao.respondAnswer(answer);
+		}
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/");
+		rd.forward(request, response);
+		
 	}
 
 }

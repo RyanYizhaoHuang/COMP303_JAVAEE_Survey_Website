@@ -11,19 +11,23 @@ public interface ISurvey {
 	//find the list of survey topic
 	List<Survey> findAllSurveys();
 	
-
+	//find survey by id
+	Survey findSurveyById(int id);
 	
 	//find the list of questions
-	List<Question> findAllQuestions(int surveyid);
+	List<Question> findAllQuestionsBySruveyId(int surveyid);
 	
 	//find the list if answers
 	//List<Answer> findAllAnswers();
 	
 	//Add new survey
-	//void addNewSurvey(Survey survey);
+	void createSurvey(Survey survey);
 	
 	//Add questions
 	//void addQuestions(List<Question> questions);
+	
+	//Respond question
+	void respondAnswer(Answer answer);
 	
 	
 	

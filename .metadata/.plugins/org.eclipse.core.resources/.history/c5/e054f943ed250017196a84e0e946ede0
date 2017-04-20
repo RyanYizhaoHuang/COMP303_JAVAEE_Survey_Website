@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*"%>
+<%@ page import="service.SurveysDAO,model.*" %>
+<%@ page import="mapModel.Report" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<title>Insert title here</title>
+</head>
+<%
+	List<Question> questions = (ArrayList<Question>)request.getAttribute("Questions");
+	int numberOfQuestions = questions.size();
+	Survey survey = (Survey)request.getAttribute("Survey");
+	List<Report> reports = (ArrayList<Report>)request.getAttribute("Reports");
+%>
+<body>
+	  <div class="container">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+        <h1>Respond Survey</h1>
+        <br>
+        <div class="page-header">
+  			<h2><i class="glyphicon glyphicon-chevron-right"></i> <%= survey.getSurveyTopic()%></h2>
+		</div>
+		
+		
+		<!-- Display Survey -->
+		<% if (reports == null) { %>
+				<div class="row" style="margin-top: 38px">
+				<h3>The survey doesn't have responded yet.  </h3>
+				</div>
+			<% } else { %>
+			<div class="row" style="margin-top: 38px">		
+				<div class="col-md-12">
+					<h3>Report found for: <%= survey.getSurveyTopic()%></h3>
+					<table class="table table-hover">
+					<TR>
+						<TH>Question</TH>
+						<th>True</th>
+						<th>False</th>
+					</TR>
+					<% for (Report r : reports) { %>
+					<TR>
+					<TD><%= r.getQuestion()%></TD>
+					<td><%= r.getAnswerTrueNum()%>"></td>
+					<td><%= r.getAnswerFalseNum()%>"></td>
+					</TR>
+					<% } %>
+					</table>
+				</div>
+			</div>
+			<% } %>
+        </div>
+      </div>
+   </div>
+</body>
+</html>

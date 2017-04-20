@@ -26,7 +26,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-9">
-			<a class="btn btn-success btn-lg" href="CreateSurvey" role="button">Add New Survey</a>
+			<a class="btn btn-success btn-lg" href="initialSurvey" role="button">Add New Survey</a>
 		</div>
 	</div>
 	<div class="row" style="margin-top: 16px">
@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	
-	<!-- Display FAQ -->
+	<!-- Display Survey -->
 	<% if (surveys != null) { %>
 		<% if(surveys.isEmpty())  { %>
 			<div class="row" style="margin-top: 38px">
@@ -68,6 +68,7 @@
 				<TR>
 				<TD><%= s.getSurveyTopic()%></TD>
 				<td><a class="btn btn-sm btn-primary" href="RespondSurvey?id=<%= s.getSurveyid()%>"> Respond</a></td>
+				<td><a class="btn btn-sm btn-success" href="checkReport?id=<%= s.getSurveyid()%>"> Report</a></td>
 				</TR>
 				<% } %>
 				</table>

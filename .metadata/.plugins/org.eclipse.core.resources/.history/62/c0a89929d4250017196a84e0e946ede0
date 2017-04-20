@@ -1,0 +1,101 @@
+package service;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.RollbackException;
+import javax.persistence.TypedQuery;
+
+
+import model.Question;
+import model.Survey;
+
+public class SurveysDAO implements  ISurvey{
+
+	static EntityManager em;
+	//Constructor
+	public SurveysDAO()
+	{
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SurveysJPA");
+		em = emf.createEntityManager();
+	}
+	
+	//Get all surveys
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Survey> findAllSurveys() {
+		Query q = em.createNamedQuery("Survey.findAll");
+		return q.getResultList();
+	}
+	
+	//Get survey by survey name
+	@SuppressWarnings("unchecked")
+	public List<Survey> findByName(String name)
+	{
+		Query q = em.createQuery("SELECT s from Survey s WHERE s.surveyTopic LIKE :name ");
+		q.setParameter("name","%" + name+ "%" );
+		if(q.getResultList() != null)
+		{
+			return q.getResultList();
+		}
+		return null;
+		
+	}
+	
+	public Survey findSurveyById(int id)
+	{
+		String qString = "SELECT s from Survey s WHERE s.surveyid = :id";
+		TypedQuery<Survey> q = em.createQuery(qString,Survey.class);
+		q.setParameter("id",id);
+		try{
+			return q.getSingleResult();
+		}catch(NoResultException e)
+		{
+			System.out.println(e);
+		}
+		return null;
+	}
+
+	//Get questions by surveyId
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Question> findAllQuestionsBySruveyId(int surveyid) {
+		
+		Query q = em.createQuery("SELECT qs from Survey s JOIN s.questions qs WHERE s.surveyid = :key_word");
+		q.setParameter("key_word",surveyid);
+		System.out.println(q.toString());
+		if(q.getResultList() != null)
+		{
+			return q.getResultList();
+		}
+		return null;
+	}
+	
+	//Save new survey
+	public void createSurvey(Survey survey)
+	{
+		EntityTransaction et = em.getTransaction();
+		
+		try{
+			et.begin();
+			em.persist(survey);
+			et.commit();
+		}catch(RollbackException re) { // RuntimeException
+			re.printStackTrace(System.err); // debug info
+		}catch(Exception e)
+		{
+			System.out.println(e);
+			et.rollback();
+		}
+		finally
+		{
+		}
+	}
+	
+
+}

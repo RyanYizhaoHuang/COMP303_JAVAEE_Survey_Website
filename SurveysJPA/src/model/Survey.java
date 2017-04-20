@@ -23,7 +23,7 @@ public class Survey implements Serializable {
 	private String surveyTopic;
 
 	//bi-directional many-to-one association to Question
-	@OneToMany(mappedBy="survey")
+	@OneToMany(mappedBy="survey",cascade = CascadeType.PERSIST)
 	private List<Question> questions;
 
 	public Survey() {
