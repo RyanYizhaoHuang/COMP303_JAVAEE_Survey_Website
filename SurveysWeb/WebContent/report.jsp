@@ -50,15 +50,16 @@
 							<th>False</th>
 						</TR>
 						<% for (int count = 0;count < numberOfQuestions ; ++count) { %>
-						<TR>
-						<TD><%= questions.get(count).getQuestion()%></TD>
+						<tr>
+						<td><%= questions.get(count).getQuestion()%></td>
 						<td><%if (reports.get(count).getAnswerTrueNum()== null){ %><%= "0"%><% }else { %><%= reports.get(count).getAnswerTrueNum()%><%} %></td>
 						<td><%if (reports.get(count).getAnswerFalseNum()== null){ %><%= "0"%><% }else { %><%= reports.get(count).getAnswerFalseNum()%><%} %></td>
-						</TR>
+						</tr>
+						<% } %>
 						</table>
 					</div>
 				</div>
-					<% } }else { %>
+					<% }else { %>
 					<div class="row" style="margin-top: 38px">
 						<h3>The survey doesn't have responded yet.  </h3>
 					</div>						

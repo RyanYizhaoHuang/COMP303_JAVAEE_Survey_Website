@@ -23,11 +23,11 @@ public interface ISurvey {
 	//Add new survey
 	void createSurvey(Survey survey);
 	
-	//Add questions
-	//void addQuestions(List<Question> questions);
 	
 	//Respond question
 	void respondAnswer(Answer answer);
+	
+	List<Object[]> checkAnswer(int surveyId);
 	
 	
 	

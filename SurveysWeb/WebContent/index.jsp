@@ -44,7 +44,7 @@
 		</form>
 		</div>
 		<div class="col-md-3">
-			<a  class="btn btn-lg btn-primary" href="ListSurvey">Show ALL Survey <span class="badge"><%=request.getAttribute("numberOfSurveys") %></span></a>
+			<a  class="btn btn-lg btn-primary" href="ListSurvey">Show ALL Survey</a>
 		</div>
 	</div>
 	
