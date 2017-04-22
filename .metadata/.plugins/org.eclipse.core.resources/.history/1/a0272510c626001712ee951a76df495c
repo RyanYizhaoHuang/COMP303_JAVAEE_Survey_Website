@@ -49,30 +49,43 @@ public class checkReport extends HttpServlet {
 		//transfer data from reportList to report
 		if(!reportList.isEmpty())
 		{
-				for(int i = 0 ; i < questions.size(); ++i)
+				for(int i =1 ; i < questions.size(); ++i)
 				{
 					int prevQuestionID = questions.get(i).getQuestionid();
 					Report singleReport = new Report();
 					for (int count = 0 ; count < reportList.size(); count++) {
 						int currQuestionID = (Integer)reportList.get(count)[2];						
-						if(prevQuestionID != currQuestionID){
-						
-							singleReport = new Report();
-							
+						if(prevQuestionID == currQuestionID){
+						    singleReport.setSurveyId(surveyid);
+						    singleReport.setQuestionId((Integer)reportList.get(count)[2]);
+						    
+						    //Check if answer:true
+						    if((Integer)reportList.get(count)[3]==1 )
+						    {
+						    	singleReport.setAnswerTrueNum((Long)reportList.get(count)[0]);
+						    }
+						    else
+						    {
+						    	singleReport.setAnswerFalseNum((Long)reportList.get(count)[0]);
+						    }	
+						    prevQuestionID = (Integer)reportList.get(count)[2];
 						}
-						singleReport.setSurveyId(surveyid);
-					    singleReport.setQuestionId((Integer)reportList.get(count)[2]);
-					    
-					    //Check if answer:true
-					    if((Integer)reportList.get(count)[3]== 1 )
-					    {
-					    	singleReport.setAnswerTrueNum((Long)reportList.get(count)[0]);
-					    }
-					    if((Integer)reportList.get(count)[3]== 2 )
-					    {
-					    	singleReport.setAnswerFalseNum((Long)reportList.get(count)[0]);
-					    }	
-					    prevQuestionID = (Integer)reportList.get(count)[2];
+						else
+						{
+							Report newReport = new Report();
+							newReport.setSurveyId(surveyid);
+							newReport.setQuestionId((Integer)reportList.get(count)[2]);
+						  //Check if answer:true
+						    if((Integer)reportList.get(count)[3]==1 )
+						    {
+						    	newReport.setAnswerTrueNum((Long)reportList.get(count)[0]);
+						    }
+						    else
+						    {
+						    	newReport.setAnswerFalseNum((Long)reportList.get(count)[0]);
+						    }	
+						    prevQuestionID = (Integer)reportList.get(count)[2];
+						}
 						reports.add(singleReport);
 					}
 				}

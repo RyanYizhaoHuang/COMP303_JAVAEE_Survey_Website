@@ -11088,3 +11088,21 @@ Caused by: tern.TernException: TernError: No type found at the given position.
 	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:127)
 	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:42)
 	... 2 more
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-04-21 15:08:56.588
+!MESSAGE The server "WildFly 10.0" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_121 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-04-21 15:09:44.669
+!MESSAGE The server "WildFly 10.0" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_121 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-04-21 15:15:33.535
+!MESSAGE The server "WildFly 10.0" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_121 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-04-21 15:19:35.320
+!MESSAGE The server "WildFly 10.0" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_121 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-04-21 15:20:01.617
+!MESSAGE The server "WildFly 10.0" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_121 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-04-21 16:38:58.707
+!MESSAGE The server "WildFly 10.0" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files\Java\jre1.8.0_121 

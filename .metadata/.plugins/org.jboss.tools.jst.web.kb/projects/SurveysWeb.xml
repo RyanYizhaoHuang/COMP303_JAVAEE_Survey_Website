@@ -125,30 +125,30 @@
    <linked-el length="38" name="%0" offset="2482" path="%2"/>
    <linked-el length="51" name="%0" offset="2921" path="%3"/>
    <linked-el length="49" name="%0" offset="1503" path="%2"/>
-   <linked-el length="47" name="%0" offset="1653" path="%4"/>
-   <linked-el length="38" name="%0" offset="3504" path="%5"/>
+   <linked-el length="38" name="%0" offset="3504" path="%4"/>
+   <linked-el length="47" name="%0" offset="1622" path="%5"/>
    <linked-el length="37" name="%6" offset="3196" path="%1"/>
    <linked-el length="38" name="%6" offset="2482" path="%2"/>
    <linked-el length="51" name="%6" offset="2921" path="%3"/>
    <linked-el length="49" name="%6" offset="1503" path="%2"/>
-   <linked-el length="47" name="%6" offset="1653" path="%4"/>
-   <linked-el length="38" name="%6" offset="3504" path="%5"/>
+   <linked-el length="38" name="%6" offset="3504" path="%4"/>
+   <linked-el length="47" name="%6" offset="1622" path="%5"/>
    <linked-el length="37" name="%7" offset="3196" path="%1"/>
    <linked-el length="38" name="%7" offset="2482" path="%2"/>
    <linked-el length="51" name="%7" offset="2921" path="%3"/>
    <linked-el length="49" name="%7" offset="1503" path="%2"/>
-   <linked-el length="47" name="%7" offset="1653" path="%4"/>
-   <linked-el length="38" name="%7" offset="3504" path="%5"/>
+   <linked-el length="38" name="%7" offset="3504" path="%4"/>
+   <linked-el length="47" name="%7" offset="1622" path="%5"/>
   </el>
  </validation>
  <aliases>
   <alias path="pageContext" value="%0"/>
-  <alias path="/SurveysWeb/WebContent/index.jsp" value="%4"/>
+  <alias path="/SurveysWeb/WebContent/index.jsp" value="%5"/>
   <alias path="pageContext.request" value="%6"/>
   <alias path="/SurveysWeb/WebContent/initialSurvey.jsp" value="%2"/>
   <alias path="/SurveysWeb/WebContent/report.jsp" value="%1"/>
   <alias path="pageContext.request.contextPath" value="%7"/>
-  <alias path="/SurveysWeb/WebContent/respondSurvey.jsp" value="%5"/>
+  <alias path="/SurveysWeb/WebContent/respondSurvey.jsp" value="%4"/>
   <alias path="/SurveysWeb/WebContent/createSurvey.jsp" value="%3"/>
  </aliases>
  <includes/>

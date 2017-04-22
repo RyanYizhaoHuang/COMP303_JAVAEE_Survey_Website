@@ -49,7 +49,7 @@ public class checkReport extends HttpServlet {
 		//transfer data from reportList to report
 		if(!reportList.isEmpty())
 		{
-				for(int i = 0 ; i < questions.size(); ++i)
+				for(int i =1 ; i < questions.size(); ++i)
 				{
 					int prevQuestionID = questions.get(i).getQuestionid();
 					Report singleReport = new Report();
